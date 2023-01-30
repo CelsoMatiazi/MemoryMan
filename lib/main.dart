@@ -6,6 +6,7 @@ import 'package:memory_man_app/controller/dialog_messages.dart';
 import 'package:memory_man_app/controller/sound_controller.dart';
 import 'package:memory_man_app/controller/translator.dart';
 import 'package:memory_man_app/ui/home.dart';
+import 'package:memory_man_app/ui/splash_lukas.dart';
 import 'package:memory_man_app/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -23,9 +24,9 @@ void main() async{
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
 
-  runApp(const SplashScreen());
+  runApp(const SplashLukas());
 
-  await Future.delayed(const Duration(seconds: 6));
+  await Future.delayed(const Duration(seconds: 4));
 
   var translator = Translator();
 
