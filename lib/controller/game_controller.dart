@@ -40,6 +40,7 @@ class GameController extends ChangeNotifier{
   int numberOfLife = 3;
 
   bool canPlay = false;
+  bool blockPlay = true;
   bool canSound = true;
   bool autoAdjustTimer = true;
 
@@ -61,6 +62,7 @@ class GameController extends ChangeNotifier{
 
 
   playerIsPlaying(int position){
+    print("PP");
     if(canPlay){
       if(numberOfPlays < sequence.length) {
           if(position != sequence[numberOfPlays]){
@@ -75,10 +77,12 @@ class GameController extends ChangeNotifier{
   }
 
   startSequence() async {
+    print("SS");
     scoreBar = 0;
     numberOfPlays = 0;
     if(!canPlay){
       canPlay = true;
+      blockPlay = true;
       for (int element in sequence) {
         await Future.delayed( Duration(milliseconds: animationTimer), () => pressButton(position: element));
       }
@@ -86,11 +90,13 @@ class GameController extends ChangeNotifier{
     }
     await Future.delayed(const Duration(seconds: 1));
     canPlay = true;
+    blockPlay = false;
     notifyListeners();
   }
 
 
   _completedSequence(){
+    print("CS");
     canPlay = false;
     score++;
     level++;
@@ -108,6 +114,7 @@ class GameController extends ChangeNotifier{
   }
 
   _eachPlay(){
+    print("EP");
     numberOfPlays++;
     score++;
     scoreBar = numberOfPlays / sequence.length;
@@ -152,28 +159,9 @@ class GameController extends ChangeNotifier{
   void pressButton({required int position}) async {
     if(canPlay) {
       if(canSound) sound.playSound(position);
-      switch(position){
-        case 1 :
-          _buttonTransform(1);
-          await Future.delayed(Duration(milliseconds: animationTimer));
-          _buttonTransform(1);
-        break;
-        case 2 :
-          _buttonTransform(2);
-          await Future.delayed(Duration(milliseconds: animationTimer));
-          _buttonTransform(2);
-        break;
-        case 3 :
-          _buttonTransform(3);
-          await Future.delayed(Duration(milliseconds: animationTimer));
-          _buttonTransform(3);
-        break;
-        case 4 :
-          _buttonTransform(4);
-          await Future.delayed(Duration(milliseconds: animationTimer));
-          _buttonTransform(4);
-        break;
-      }
+      _buttonTransform(position);
+      await Future.delayed(Duration(milliseconds: animationTimer));
+      _buttonTransform(position);
     }
   }
 
@@ -227,7 +215,7 @@ class GameController extends ChangeNotifier{
   }
 
   _autoAdjustTime(){
-    if(level % 1 == 0 && animationTimer > 85 && autoAdjustTimer) animationTimer -= 4;
+    if(level % 1 == 0 && animationTimer > 85 && autoAdjustTimer) animationTimer -= 5;
   }
 
   translate(){

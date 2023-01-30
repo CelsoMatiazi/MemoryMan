@@ -30,12 +30,13 @@ void main() async{
   var translator = Translator();
 
   runApp(ChangeNotifierProvider(
-      create: (context) => GameController(
-          sound: SoundController(),
-          message: DialogMessages(translator: translator),
-          data: Data(message: DialogMessages(translator: translator)),
-          translator: translator
-      ),
+      create: (context) =>
+          GameController(
+              sound: SoundController(),
+              message: DialogMessages(translator: translator),
+              data: Data(message: DialogMessages(translator: translator)),
+              translator: translator
+          ),
       child: const MyApp()
   ));
 }

@@ -84,7 +84,7 @@ class Translator{
     text11 = "Ajuste de Tempo";
     text12 = "Ajuste a velocidade entre as jogadas para um valor desejado";
     text13 = "Rápido";
-    text14 = "lento";
+    text14 = "Lento";
     text15 = "Seleção de toques";
     text16 = "Selecione o toque desejado, cada opção representa as notas de um acorde, sempre com a fundamental em Dó";
     text17 = "Maior com Sétima";

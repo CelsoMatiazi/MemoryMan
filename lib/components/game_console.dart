@@ -55,8 +55,11 @@ class GameConsole extends StatelessWidget {
                         color: Colors.red,
                         angle: 4,
                         onTapDown: (){
-                        controller.pressButton(position: 1);
-                        controller.playerIsPlaying(1);
+                          if(!controller.blockPlay){
+                            controller.pressButton(position: 1);
+                            controller.playerIsPlaying(1);
+                          }
+
                       },
                     ),
 
@@ -66,8 +69,10 @@ class GameConsole extends StatelessWidget {
                       color: Colors.blue,
                       angle: 1,
                       onTapDown: (){
-                        controller.pressButton(position: 2);
-                        controller.playerIsPlaying(2);
+                        if(!controller.blockPlay) {
+                          controller.pressButton(position: 2);
+                          controller.playerIsPlaying(2);
+                        }
                       },
                     ),
                   ],
@@ -76,15 +81,16 @@ class GameConsole extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
                     ButtonGame(
                       subtractSize: controller.subtractGreenPressSize,
                       opacity: controller.greenOpacity,
                       color: Colors.green,
                       angle: 3,
                       onTapDown: (){
-                        controller.pressButton(position: 3);
-                        controller.playerIsPlaying(3);
+                        if(!controller.blockPlay) {
+                          controller.pressButton(position: 3);
+                          controller.playerIsPlaying(3);
+                        }
                       },
                     ),
 
@@ -94,8 +100,10 @@ class GameConsole extends StatelessWidget {
                       color: Colors.yellow,
                       angle: 2,
                       onTapDown: (){
-                        controller.pressButton(position: 4);
-                        controller.playerIsPlaying(4);
+                        if(!controller.blockPlay) {
+                          controller.pressButton(position: 4);
+                          controller.playerIsPlaying(4);
+                        }
                       },
                     ),
                   ],
